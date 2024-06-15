@@ -35,12 +35,9 @@ function onPageLoad() {
 
     $.getJSON(url)
         .done(function(data) {
-            console.log("Got response for get_location_names request", data);
+            console.log("got response for get_location_names request");
             if (data && data.locations) {
-                var locations = data.locations.map(function(location) {
-                    return toTitleCase(location); // Convert each location to Title Case
-                });
-
+                var locations = data.locations;
                 var selectDropdown = document.getElementById("uiLocations");
                 selectDropdown.innerHTML = ''; // Clear existing options (including placeholder)
 
@@ -52,7 +49,7 @@ function onPageLoad() {
                 placeholderOption.selected = true;
                 selectDropdown.appendChild(placeholderOption);
 
-                // Add options from Title Case JSON data
+                // Add options from JSON data
                 locations.forEach(function(location) {
                     var option = document.createElement('option');
                     option.value = location;
@@ -69,14 +66,8 @@ function onPageLoad() {
         });
 }
 
-// Helper function to convert a string to Title Case
-function toTitleCase(str) {
-    return str.replace(/\w\S*/g, function(txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-    });
-}
-
 // Call onPageLoad when the document is fully loaded
 $(document).ready(function() {
     onPageLoad();
 });
+
