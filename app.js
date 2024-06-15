@@ -1,5 +1,6 @@
 function onClickedEstimatePrice() {
     console.log("Estimate price button clicked");
+
     var sqft = document.getElementById("uiSqft").value;
     var bhk = document.getElementById("uiBHK").value;
     var bathrooms = document.getElementById("uiBathrooms").value;
@@ -8,22 +9,26 @@ function onClickedEstimatePrice() {
 
     var url = "https://thanalakshan.github.io/api/predict_home_price";
 
-    // Make sure to parse numerical inputs as floats or integers
-    $.post(url, {
-        total_sqft: parseFloat(sqft),
-        bhk: parseInt(bhk),
-        bath: parseInt(bathrooms),
-        location: location
-    }, function(data, status) {
-        console.log(data.estimated_price);
-        estPrice.innerHTML = "<h2>" + data.estimated_price.toString() + " Lakh</h2>";
-        console.log(status);
-    })
-    .fail(function(jqXHR, textStatus, errorThrown) {
-        console.error("Error in POST request:", textStatus, errorThrown);
+    $.ajax({
+        url: url,
+        type: "POST",
+        data: JSON.stringify({
+            total_sqft: parseFloat(sqft),
+            bhk: parseInt(bhk),
+            bath: parseInt(bathrooms),
+            location: location
+        }),
+        contentType: "application/json",
+        success: function(data, status) {
+            console.log(data.estimated_price);
+            estPrice.innerHTML = "<h2>" + data.estimated_price.toString() + " Lakh</h2>";
+            console.log(status);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error("Error in POST request:", textStatus, errorThrown);
+        }
     });
 }
-
 
 function onPageLoad() {
     var url = "./src/locations.json";
