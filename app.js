@@ -9,25 +9,18 @@ function onClickedEstimatePrice() {
 
     var url = "https://thanalakshan.github.io/api/predict_home_price";
 
-    $.ajax({
-        url: url,
-        type: "POST",
-        data: JSON.stringify({
-            total_sqft: parseFloat(sqft),
-            bhk: parseInt(bhk),
-            bath: parseInt(bathrooms),
-            location: location
-        }),
-        contentType: "application/json",
-        success: function(data, status) {
+    // Construct query parameters for GET request
+    var queryParams = `?total_sqft=${encodeURIComponent(sqft)}&bhk=${encodeURIComponent(bhk)}&bath=${encodeURIComponent(bathrooms)}&location=${encodeURIComponent(location)}`;
+
+    // Make GET request
+    $.get(url + queryParams)
+        .done(function(data) {
             console.log(data.estimated_price);
             estPrice.innerHTML = "<h2>" + data.estimated_price.toString() + " Lakh</h2>";
-            console.log(status);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.error("Error in POST request:", textStatus, errorThrown);
-        }
-    });
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            console.error("Error in GET request:", textStatus, errorThrown);
+        });
 }
 
 function onPageLoad() {
