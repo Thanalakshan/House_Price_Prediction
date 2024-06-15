@@ -1,22 +1,12 @@
-function getBathValue() {
-    var bathrooms = document.getElementById("uiBathrooms");
-    return parseInt(bathrooms.value);
-}
-
-function getBHKValue() {
-    var bhk = document.getElementById("uiBHK");
-    return parseInt(bhk.value);
-}
-
 function onClickedEstimatePrice() {
     console.log("Estimate price button clicked");
     var sqft = document.getElementById("uiSqft");
-    var bhk = getBHKValue();
-    var bathrooms = getBathValue();
-    var location = document.getElementById("uiLocations").value; // Get selected location value
+    var bhk = document.getElementById("uiBHK");
+    var bathrooms = document.getElementById("uiBathrooms");
+    var location = document.getElementById("uiLocations").value;
     var estPrice = document.getElementById("uiEstimatedPrice");
 
-    var url = "/api/predict_home_price";
+    var url = "https://thanalakshan.github.io/api/predict_home_price";
 
     $.post(url, {
         total_sqft: parseFloat(sqft.value),
@@ -31,7 +21,7 @@ function onClickedEstimatePrice() {
 }
 
 function onPageLoad() {
-    var url = "./src/columns.json";
+    var url = "./src/locations.json";
 
     $.getJSON(url)
         .done(function(data) {
