@@ -23,13 +23,14 @@ body, html {
 }
 
 .form {
-  max-width: 300px;
+  max-width: 400px;
   width: 100%;
   background: #ffffff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   z-index: 2;
+  margin: 20px; /* Add margin for spacing */
 }
 
 h2 {
@@ -49,28 +50,6 @@ h2 {
   font-size: 16px;
   border-radius: 5px;
   box-sizing: border-box;
-}
-
-.submit, .result {
-  background: #a5dc86;
-  color: #fff;
-  width: 100%;
-  border: 0;
-  padding: 10px;
-  margin-top: 20px;
-  font-size: 16px;
-  border-radius: 5px;
-  text-align: center;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.submit:hover, .result:hover {
-  background: #92c774;
-}
-
-.result {
-  background: #dcd686;
 }
 
 .number-input {
@@ -111,7 +90,7 @@ h2 {
 
 .switch-field {
   display: flex;
-  margin-bottom: 36px;
+  margin-bottom: 20px; /* Reduce margin */
 }
 
 .switch-field input {
@@ -153,4 +132,26 @@ h2 {
 
 .switch-field label:last-of-type {
   border-radius: 0 5px 5px 0;
+}
+
+.submit, .result {
+  background: #a5dc86;
+  color: #fff;
+  width: 100%;
+  border: 0;
+  padding: 12px; /* Increase padding */
+  margin-top: 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.submit:hover, .result:hover {
+  background: #92c774;
+}
+
+.result {
+  background: #dcd686;
 }
