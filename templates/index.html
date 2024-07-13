@@ -56,7 +56,7 @@
                 .then(function(data) {
                     // Update UI with estimated price
                     var estimatedPriceDiv = document.getElementById('uiEstimatedPrice');
-                    estimatedPriceDiv.innerHTML = '<h2>Estimated Price: ₹ ' + data.estimated_price + '</h2>';
+                    estimatedPriceDiv.innerHTML = '<h2>Estimated Price (in Lakhs ₹) : ' + data.estimated_price + '</h2>';
                 })
                 .catch(function(error) {
                     console.error('Error:', error);
